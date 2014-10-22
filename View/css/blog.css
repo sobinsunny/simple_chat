@@ -1,0 +1,62 @@
+body{
+    background:url("../im/background.png") repeat-x bottom #fff;
+    padding:0px;
+    margin: 0px;
+}
+#content{
+	width:800px;
+	min-height: 1000px;
+	margin: 0px auto;
+	background-color: #FFFFFF;
+} 
+#feild_area{
+	width: 800px;
+	position :fixed;
+	min-height: 300px;
+	border-bottom: 1px solid black;
+	text-align: center;
+}
+#content_area
+{
+	width: 799px;
+	min-height: 5px;
+	text-align: center;
+	padding-left: 50px;
+	padding-left: 50px;
+}
+textarea
+{ 
+	box-shadow: focus;
+	margin-top:30px;
+}
+#butn{
+	 margin-right: 63px;
+}
+p{  
+	 padding: -50px;
+	 color: blue;
+     margin :100px auto !importent;
+     text-align: justify; 
+
+ }
+ .b_post{
+ width: 700px;
+ min-height:auto;
+ word-wrap: break-word;
+ }
+.im{
+  	background: url("im/delete.png");
+  	background-size: cover;
+	width: 49px;   
+	height:49px;
+	margin-top: -40px;
+	float: right;
+	vertical-align: middle;
+}
+#error_status{
+	color: red;
+	text-decoration: blink;
+	}
+#success_message{
+	color: green;
+}
