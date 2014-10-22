@@ -1,10 +1,25 @@
+require 'em-websocket'
 
-require 'socket'               # Get sockets from stdlib
+EM.run {
+    @clients = []
+     EM::WebSocket.start(:host => '0.0.0.0', :port => '8080') do |ws|
 
-server = TCPServer.open(2000)  # Socket to listen on port 2000
-loop {                         # Servers run forever
-  client = server.accept       # Wait for a client to connect
-  client.puts "#{(Time.now.ctime).to_s} "+" +This is the system time";  # Send the time to the client
-  client.puts "Closing the connection. Bye!"
-  client.close                 # Disconnect from the client
+     ws.onopen do |handshake|
+           @clients << ws
+           ws.send "Connection Opend."
+      end
+
+    ws.onclose {
+                    puts "Connection closed"
+                     @clients.delete ws 
+               }
+    
+     ws.onmessage do |msg|
+                 puts "Received Message: #{msg}"
+                    @clients.each do |socket|
+                        socket.send msg
+                    end
+      end
+      
+  end
 }
