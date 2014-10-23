@@ -9,12 +9,16 @@ body{
 	margin: 0px auto;
 	background-color: #FFFFFF;
 } 
+#lo{
+	float:right;
+
+}
 #feild_area{
 	width: 800px;
-	position :fixed;
 	min-height: 300px;
-	border-bottom: 1px solid black;
+	border-top: 1px solid black;
 	text-align: center;
+	position: bottom;
 }
 #content_area
 {
@@ -23,6 +27,7 @@ body{
 	text-align: center;
 	padding-left: 50px;
 	padding-left: 50px;
+	overflow: auto;
 }
 textarea
 { 
@@ -44,6 +49,14 @@ p{
  min-height:auto;
  word-wrap: break-word;
  }
+ #talkbubble {
+   width: 180px;
+   height: 80px;
+   position: relative;
+   -moz-border-radius:    20px;
+   -webkit-border-radius: 10px;
+   border-radius:         10px;
+}
 .im{
   	background: url("im/delete.png");
   	background-size: cover;
@@ -59,4 +72,13 @@ p{
 	}
 #success_message{
 	color: green;
+}
+#talkbubble_left
+{
+ height: 80px;
+   background: #48D1CC;
+   position: relative;
+   -moz-border-radius:    20px;
+   -webkit-border-radius: 10px;
+   border-radius:         10px;
 }

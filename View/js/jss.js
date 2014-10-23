@@ -1,23 +1,23 @@
-function WebSocketTest()
-{
+$(document).ready(function() {
+
   if ("WebSocket" in window)
   {
-     var text=f.input_text.value;
-     var ws = new WebSocket("ws://localhost:8080/Sobin");
+     
+     var ws = new WebSocket("ws://localhost:8080/albin");
      ws.onopen = function()
      {
-        // Web Socket is connected, send data using send()
-        ws.send(text);
      };
      ws.onmessage = function (evt) 
      { 
-          var i= evt.data;         
-          div = document.createElement('div'); 
-          $(div).addClass("b_post").html("<p>"+i+"</p>");              
-          $("#content_area").prepend(div);
+         
+                var i= evt.data;   
+                div = document.createElement('div'); 
+                $(div).attr('id','talkbubble').html("<p>"+i+"</p>");              
+                $("#content_area").append(div);
      };
-     ws.onclose = function()
+  ws.onclose = function()
      { 
+        // websocket is closed.
         alert("Connection is closed..."); 
      };
   }
@@ -26,4 +26,8 @@ function WebSocketTest()
      // The browser doesn't support WebSocket
      alert("WebSocket NOT supported by your Browser!");
   }
-}
+$('#send_button').click(function() {
+  var text=f.fname.value;
+  ws.send(text);
+});
+});
