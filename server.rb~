@@ -1,22 +1,27 @@
 require 'em-websocket'
 
-EM.run {
-  EM::WebSocket.run(:host => "0.0.0.0", :port => 8080) do |ws|
-    ws.onopen { |handshake|
-      puts "WebSocket connection open"
+EM.run do
 
-      # Access properties on the EM::WebSocket::Handshake object, e.g.
-      # path, query_string, origin, headers
+  @clients = []
 
-      # Publish message to the client
-      ws.send "Hello Client, you connected to #{handshake.path}"
-    }
+   EM::WebSocket.start(:host => '0.0.0.0', :port => '8080') do |ws|
+    ws.onopen do |handshake|
+      @clients << ws
+      ws.send "Connected to #{handshake.path}."
+    end
 
-    ws.onclose { puts "Connection closed" }
+      ws.onclose do
+      ws.send "Closed."
+      @clients.delete ws
+    end
 
-    ws.onmessage { |msg|
-      puts "Recieved message: #{msg}"
-      ws.send "Pong: #{msg}"
-    }
+    ws.onmessage do |msg|
+      puts "Received Message: #{msg}"
+      @clients.each do |socket|
+        socket.send msg
+      end
+    end
   end
-}
+
+  App.run! :port => 8080
+end
