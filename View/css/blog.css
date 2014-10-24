@@ -58,20 +58,5 @@ p{
    -webkit-border-radius: 10px;
    border-radius:         10px;
    margin: 5px;
-}
-.im{
-  	background: url("im/delete.png");
-  	background-size: cover;
-	width: 49px;   
-	height:49px;
-	margin-top: -40px;
-	float: right;
-	vertical-align: middle;
-}
-#error_status{
-	color: red;
-	text-decoration: blink;
-	}
-#success_message{
-	color: green;
+   text-align: right;
 }
